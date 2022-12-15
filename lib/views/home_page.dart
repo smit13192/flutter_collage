@@ -15,15 +15,15 @@ class _HomePageState extends State<HomePage> {
         body: Column(children: [
           Expanded(
             child: Row(
-              children: const [
+              children: [
                 Expanded(
                     child: IconTile(
-                        color: Colors.purpleAccent,
+                        color: Colors.purpleAccent.shade400,
                         icon: Icons.add,
                         text: "Add")),
                 Expanded(
                     child: IconTile(
-                        color: Colors.blueAccent,
+                        color: Colors.blueAccent.shade400,
                         icon: Icons.add_to_drive,
                         text: "Add To Drive"))
               ],
@@ -31,21 +31,21 @@ class _HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: Row(
-              children: const [
+              children: [
                 Expanded(
                     child: IconTile(
-                        color: Colors.redAccent,
+                        color: Colors.redAccent.shade400,
                         icon: Icons.delete_rounded,
                         text: "Trash")),
                 Expanded(
                     child: IconTile(
-                        color: Colors.greenAccent,
+                        color: Colors.blueGrey.shade400,
                         icon: Icons.gamepad,
                         text: "Play Store")),
               ],
             ),
           ),
-          const Expanded(
+           const Expanded(
               child: BoxTile(
                   color: Colors.pinkAccent,
                   icon: Icons.share_outlined,
