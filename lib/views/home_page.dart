@@ -7,131 +7,39 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+
+  late AnimationController animationController;
+  late Animation animation;
+  late Animation animationcolor;
   @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(children: [
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                    child: IconTile(
-                        color: Colors.purpleAccent.shade400,
-                        icon: Icons.add,
-                        text: "Add")),
-                Expanded(
-                    child: IconTile(
-                        color: Colors.blueAccent.shade400,
-                        icon: Icons.add_to_drive,
-                        text: "Add To Drive"))
-              ],
-            ),
-          ),
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                    child: IconTile(
-                        color: Colors.redAccent.shade400,
-                        icon: Icons.delete_rounded,
-                        text: "Trash")),
-                Expanded(
-                    child: IconTile(
-                        color: Colors.blueGrey.shade400,
-                        icon: Icons.gamepad,
-                        text: "Play Store")),
-              ],
-            ),
-          ),
-           const Expanded(
-              child: BoxTile(
-                  color: Colors.pinkAccent,
-                  icon: Icons.share_outlined,
-                  text: "Share Location")),
-          Expanded(
-              child: BoxTile(
-                  color: Colors.yellow.shade900,
-                  icon: Icons.send_and_archive_rounded,
-                  text: "Send Data"))
-        ]),
-      ),
-    );
+  void initState() {
+    super.initState();
+    animationController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 5));
+    animation = Tween(begin: 0.0, end: 300.0).animate(animationController)
+      ..addListener(() {
+        setState(() {});
+      });
+    animationcolor = ColorTween(begin: Colors.red, end: Colors.blue)
+        .animate(animationController)
+      ..addListener(() {
+        setState(() {});
+      });
+      animationController.forward();
   }
-}
-
-class IconTile extends StatelessWidget {
-  final Color color;
-  final String text;
-  final IconData icon;
-  const IconTile(
-      {super.key, required this.color, required this.icon, required this.text});
 
   @override
   Widget build(BuildContext context) {
-    double radius = 30.0;
-
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-      decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(radius),
-              bottomLeft: Radius.circular(radius))),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            size: 20,
-            color: Colors.white,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            text,
-            style: const TextStyle(color: Colors.white, fontSize: 17),
-          )
-        ],
+    return Scaffold(
+        body: SafeArea(
+            child: Center(
+      child: Container(
+        height: animation.value,
+        width: animation.value,
+        decoration: BoxDecoration(color: animationcolor.value),
       ),
-    );
-  }
-}
-
-class BoxTile extends StatelessWidget {
-  final Color color;
-  final String text;
-  final IconData icon;
-  const BoxTile(
-      {super.key, required this.color, required this.icon, required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    double radius = 30.0;
-
-    return Container(
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        decoration: BoxDecoration(
-            color: color, borderRadius: BorderRadius.circular(radius)),
-        child: Row(
-          children: [
-            Expanded(
-              child: Icon(
-                icon,
-                size: 30,
-                color: Colors.white,
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Text(
-                text,
-                style: const TextStyle(color: Colors.white, fontSize: 20),
-              ),
-            )
-          ],
-        ));
+    )));
   }
 }
