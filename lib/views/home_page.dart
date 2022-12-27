@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ms/model/constanat.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -7,39 +8,28 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
-
-  late AnimationController animationController;
-  late Animation animation;
-  late Animation animationcolor;
-  @override
-  void initState() {
-    super.initState();
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 5));
-    animation = Tween(begin: 0.0, end: 300.0).animate(animationController)
-      ..addListener(() {
-        setState(() {});
-      });
-    animationcolor = ColorTween(begin: Colors.red, end: Colors.blue)
-        .animate(animationController)
-      ..addListener(() {
-        setState(() {});
-      });
-      animationController.forward();
-  }
-
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-            child: Center(
-      child: Container(
-        height: animation.value,
-        width: animation.value,
-        decoration: BoxDecoration(color: animationcolor.value),
+      backgroundColor: Colors.grey[300],
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          appName,
+          style: TextStyle(
+              color: Colors.black87,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 2),
+        ),
       ),
-    )));
+      body: SafeArea(
+        child: Center(
+          child: Container(),
+        ),
+      ),
+    );
   }
 }

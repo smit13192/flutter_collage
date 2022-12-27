@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:ms/views/home_page.dart';
+import 'package:ms/model/constanat.dart';
 
 class SpalshPage extends StatefulWidget {
   const SpalshPage({super.key});
@@ -27,8 +27,7 @@ class _SpalshPageState extends State<SpalshPage>
     Timer(
       const Duration(seconds: 3),
       () {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const HomePage()));
+        Navigator.pushReplacementNamed(context, homePage);
       },
     );
   }
@@ -47,7 +46,7 @@ class _SpalshPageState extends State<SpalshPage>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "M&S",
+                      appName,
                       style: TextStyle(
                           color: Colors.white,
                           letterSpacing: 2,
@@ -55,7 +54,7 @@ class _SpalshPageState extends State<SpalshPage>
                           fontWeight: FontWeight.w200),
                     ),
                     Text(
-                      "Love You EveryThing",
+                      appThemeTitle,
                       style: TextStyle(
                           color: Colors.white,
                           letterSpacing: 2,
