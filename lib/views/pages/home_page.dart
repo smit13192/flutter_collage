@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ms/model/constanat.dart';
 
+import '../widgets/bottom_navigation_bar.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -9,10 +11,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int bottomNavigationIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[50],
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -21,14 +25,13 @@ class _HomePageState extends State<HomePage> {
           appName,
           style: TextStyle(
               color: Colors.black87,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w200,
               letterSpacing: 2),
         ),
       ),
-      body: SafeArea(
-        child: Center(
-          child: Container(),
-        ),
+      bottomNavigationBar: MyBottomNavigationBar(
+        bottomNavigationIndex: bottomNavigationIndex,
+        onTabChanged: (value) => setState(() => bottomNavigationIndex = value),
       ),
     );
   }
