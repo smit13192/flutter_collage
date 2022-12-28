@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ms/model/constanat.dart';
 import 'package:ms/views/pages/home_page.dart';
 import 'package:ms/views/pages/login_page.dart';
+import 'package:ms/views/pages/register_page.dart';
 import 'package:ms/views/pages/splash_page.dart';
 
 void main(List<String> args) {
@@ -29,6 +30,10 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (context) => const SpalshPage());
           case homePage:
             return MaterialPageRoute(builder: (context) => const HomePage());
+          case loginPage:
+            return MaterialPageRoute(builder: (context) => const LoginPage());
+          case registerPage:
+            return MaterialPageRoute(builder: (context) => const RegisterPage());
           default:
             return MaterialPageRoute(builder: (context) => const SpalshPage());
         }
