@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ms/model/constanat.dart';
 import 'package:ms/views/pages/home_page.dart';
+import 'package:ms/views/pages/login_page.dart';
 import 'package:ms/views/pages/splash_page.dart';
 
 void main(List<String> args) {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.lato().fontFamily,
       ),
       
-      home: const SpalshPage(),
+      home: const LoginPage(),
       onGenerateRoute: (settings) {
         String? routeName = settings.name;
         switch (routeName) {
