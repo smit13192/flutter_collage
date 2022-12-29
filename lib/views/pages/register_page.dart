@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../../model/constanat.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+  final VoidCallback onTap;
+  const RegisterPage({super.key, required this.onTap});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -27,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: Colors.grey[100],
       body: SizedBox(
         width: double.infinity,
         child: Column(
@@ -38,7 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
               style: TextStyle(
                   color: Colors.black87,
                   letterSpacing: 2,
-                  fontSize: 70,
+                  fontSize: 40,
                   fontWeight: FontWeight.w200),
             ),
             const SizedBox(
@@ -62,11 +63,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   hintText: "Email",
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(color: Colors.grey.shade400)),
+                      borderSide: BorderSide(color: Colors.grey.shade200)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: Colors.black54),
                   ),
+                  filled: true,
+                  fillColor: Colors.grey[50],
                 ),
               ),
             ),
@@ -94,12 +97,14 @@ class _RegisterPageState extends State<RegisterPage> {
                   hintText: "Password",
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(color: Colors.grey.shade400),
+                    borderSide: BorderSide(color: Colors.grey.shade200),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: Colors.black54),
                   ),
+                  filled: true,
+                  fillColor: Colors.grey[50],
                 ),
               ),
             ),
@@ -127,12 +132,14 @@ class _RegisterPageState extends State<RegisterPage> {
                   hintText: "Conform Password",
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(color: Colors.grey.shade400),
+                    borderSide: BorderSide(color: Colors.grey.shade200),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: Colors.black54),
                   ),
+                  filled: true,
+                  fillColor: Colors.grey[50],
                 ),
               ),
             ),
@@ -146,13 +153,37 @@ class _RegisterPageState extends State<RegisterPage> {
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
                   child: Text(
-                    "Register now",
+                    "Sigh In",
                     style: TextStyle(
                         color: Colors.grey[50],
                         fontWeight: FontWeight.w700,
                         letterSpacing: 2),
                   ),
                 ),
+              ),
+            ),Padding(
+              padding: const EdgeInsets.symmetric(vertical: 2),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "You have a account ",
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87),
+                  ),
+                  GestureDetector(
+                    onTap: widget.onTap,
+                    child: const Text(
+                      "Log in",
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

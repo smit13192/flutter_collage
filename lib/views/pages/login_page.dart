@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:ms/model/constanat.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final VoidCallback onTap;
+  const LoginPage({super.key, required this.onTap});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   bool seen = true;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: Colors.grey[100],
       body: SizedBox(
         width: double.infinity,
         child: Column(
@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
               style: TextStyle(
                   color: Colors.black87,
                   letterSpacing: 2,
-                  fontSize: 70,
+                  fontSize: 40,
                   fontWeight: FontWeight.w200),
             ),
             const SizedBox(
@@ -59,11 +59,13 @@ class _LoginPageState extends State<LoginPage> {
                   hintText: "Email",
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(color: Colors.grey.shade400)),
+                      borderSide: BorderSide(color: Colors.grey.shade200)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: Colors.black54),
                   ),
+                  filled: true,
+                  fillColor: Colors.grey[50],
                 ),
               ),
             ),
@@ -91,12 +93,14 @@ class _LoginPageState extends State<LoginPage> {
                   hintText: "Password",
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(color: Colors.grey.shade400),
+                    borderSide: BorderSide(color: Colors.grey.shade200),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: Colors.black54),
                   ),
+                  filled: true,
+                  fillColor: Colors.grey[50],
                 ),
               ),
             ),
@@ -110,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
                   child: Text(
-                    "Sign In",
+                    "Log In",
                     style: TextStyle(
                         color: Colors.grey[50],
                         fontWeight: FontWeight.w700,
@@ -120,21 +124,21 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 30),
+              padding: const EdgeInsets.symmetric(vertical: 2),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Not a member? ",
+                    "Don't have an account? ",
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87),
                   ),
                   GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, registerPage),
+                    onTap: widget.onTap,
                     child: const Text(
-                      "Register now",
+                      "Sign up",
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
