@@ -167,7 +167,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "You have a account ",
+                    "You have an account ",
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
