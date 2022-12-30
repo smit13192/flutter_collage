@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ms/model/constanat.dart';
 
@@ -24,10 +25,22 @@ class _HomePageState extends State<HomePage> {
         title: const Text(
           appName,
           style: TextStyle(
-              color: Colors.black87,
-              fontWeight: FontWeight.w200,
-              letterSpacing: 2),
+            color: Colors.black87,
+            fontWeight: FontWeight.w200,
+            letterSpacing: 2,
+          ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.black87,
+            ),
+          )
+        ],
       ),
       bottomNavigationBar: MyBottomNavigationBar(
         bottomNavigationIndex: bottomNavigationIndex,

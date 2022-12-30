@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ms/model/constanat.dart';
 
@@ -10,9 +11,26 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  
   bool seen = true;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  Future sighIn() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog(
+            title: Text("Enter valid email id and password"),
+          );
+        },
+      );
+    }
+  }
 
   @override
   void dispose() {
@@ -107,18 +125,23 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 8.0, horizontal: 30),
-              child: Container(
-                height: 50,
-                decoration: BoxDecoration(
-                    color: Colors.black87,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Center(
-                  child: Text(
-                    "Log In",
-                    style: TextStyle(
-                        color: Colors.grey[50],
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 2),
+              child: GestureDetector(
+                onTap: () {
+                  sighIn();
+                },
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: Colors.black87,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: Text(
+                      "Log In",
+                      style: TextStyle(
+                          color: Colors.grey[50],
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 2),
+                    ),
                   ),
                 ),
               ),

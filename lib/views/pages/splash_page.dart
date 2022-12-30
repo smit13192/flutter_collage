@@ -27,7 +27,7 @@ class _SpalshPageState extends State<SpalshPage>
     Timer(
       const Duration(seconds: 3),
       () {
-        Navigator.pushReplacementNamed(context, supportRegisterPage);
+        Navigator.pushReplacementNamed(context, mainPage);
       },
     );
   }

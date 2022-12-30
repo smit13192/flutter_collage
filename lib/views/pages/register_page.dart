@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/constanat.dart';
@@ -11,11 +12,17 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  
   bool conformSeen = true;
   bool seen = true;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final conformPasswordController = TextEditingController();
+
+  Future logIn() async {
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text, password: passwordController.text);
+  }
 
   @override
   void dispose() {
@@ -146,22 +153,28 @@ class _RegisterPageState extends State<RegisterPage> {
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 8.0, horizontal: 30),
-              child: Container(
-                height: 50,
-                decoration: BoxDecoration(
-                    color: Colors.black87,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Center(
-                  child: Text(
-                    "Sigh In",
-                    style: TextStyle(
-                        color: Colors.grey[50],
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 2),
+              child: GestureDetector(
+                onTap: () {
+                  logIn();
+                },
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: Colors.black87,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: Text(
+                      "Sigh In",
+                      style: TextStyle(
+                          color: Colors.grey[50],
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 2),
+                    ),
                   ),
                 ),
               ),
-            ),Padding(
+            ),
+            Padding(
               padding: const EdgeInsets.symmetric(vertical: 2),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
