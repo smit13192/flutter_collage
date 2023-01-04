@@ -1,6 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ms/model/constanat.dart';
+import 'package:ms/views/pages/product_page.dart';
 
 import '../widgets/bottom_navigation_bar.dart';
 
@@ -30,18 +30,8 @@ class _HomePageState extends State<HomePage> {
             letterSpacing: 2,
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              FirebaseAuth.instance.signOut();
-            },
-            icon: const Icon(
-              Icons.logout,
-              color: Colors.black87,
-            ),
-          )
-        ],
       ),
+      body: const ProductPage(),
       bottomNavigationBar: MyBottomNavigationBar(
         bottomNavigationIndex: bottomNavigationIndex,
         onTabChanged: (value) => setState(() => bottomNavigationIndex = value),
