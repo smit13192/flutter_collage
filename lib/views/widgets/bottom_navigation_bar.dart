@@ -38,7 +38,7 @@ class MyBottomNavigationBar extends StatelessWidget {
             text: "Favourite",
           ),
           GButton(
-            icon: Icons.person,
+            icon: Icons.account_circle_outlined,
             text: "Profile",
           ),
         ],

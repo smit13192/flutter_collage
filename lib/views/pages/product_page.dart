@@ -1,62 +1,40 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:ms/model/product.dart';
+import 'package:ms/views/widgets/product_tile.dart';
 
-class ProductPage extends StatefulWidget {
+class ProductPage extends StatelessWidget {
   const ProductPage({super.key});
 
-  @override
-  State<ProductPage> createState() => _ProductPageState();
-}
+  Stream<List<Product>> readProducts() => FirebaseFirestore.instance
+      .collection("products")
+      .snapshots()
+      .map((snapshot) => snapshot.docs
+          .map((product) => Product.fromMap(product.id, product.data()))
+          .toList());
 
-class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: FirebaseFirestore.instance.collection("products").snapshots(),
+      stream: readProducts(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return GridView.builder(
-            addRepaintBoundaries: false,
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: SizedBox(
-                  height: 300,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: Image.network(
-                            snapshot.data!.docs[index]['image'][0],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        snapshot.data!.docs[index]['title'],
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        "Rs. ${snapshot.data!.docs[index]['price'].toString()}",
-                        style: const TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
+          return NotificationListener<OverscrollIndicatorNotification>(
+            onNotification: (overScroll) {
+              overScroll.disallowIndicator();
+              return true;
             },
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
+            child: GridView.builder(
+              addRepaintBoundaries: false,
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                    onTap: () {},
+                    child: ProductTile(product: snapshot.data![index]));
+              },
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+              ),
             ),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
@@ -64,7 +42,7 @@ class _ProductPageState extends State<ProductPage> {
             child: CircularProgressIndicator(),
           );
         } else {
-          return const Text("error");
+          return const Center(child: Text("error"));
         }
       },
     );
