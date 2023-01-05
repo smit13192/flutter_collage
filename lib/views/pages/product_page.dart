@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:ms/model/product.dart';
 import 'package:ms/views/widgets/product_tile.dart';
+import '../../model/constanat.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key});
@@ -25,17 +26,21 @@ class ProductPage extends StatelessWidget {
               return true;
             },
             child: GridView.builder(
-              addRepaintBoundaries: false,
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                    onTap: () {},
-                    child: ProductTile(product: snapshot.data![index]));
-              },
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-              ),
-            ),
+                addRepaintBoundaries: false,
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, productDescription,
+                            arguments: snapshot.data![index].id);
+                      },
+                      child: ProductTile(product: snapshot.data![index]));
+                },
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  mainAxisSpacing: 5,
+                  childAspectRatio: 0.6,
+                )),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(

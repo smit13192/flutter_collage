@@ -34,8 +34,8 @@ class MyBottomNavigationBar extends StatelessWidget {
             text: "Search",
           ),
           GButton(
-            icon: Icons.favorite_border_outlined,
-            text: "Favourite",
+            icon: Icons.shopping_bag_outlined,
+            text: "Cart",
           ),
           GButton(
             icon: Icons.account_circle_outlined,

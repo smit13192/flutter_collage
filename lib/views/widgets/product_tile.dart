@@ -8,12 +8,12 @@ class ProductTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Column(
         children: [
           Expanded(
-            child: SizedBox(
-              width: double.infinity,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
               child: Image.network(
                 product!.image[0],
               ),
@@ -23,17 +23,33 @@ class ProductTile extends StatelessWidget {
             height: 5,
           ),
           Text(
+            product!.company,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey
+            ),
+          ),
+          const SizedBox(
+            height: 3,
+          ),
+          Text(
             product!.title,
             style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w500,
+              color: Colors.black87
             ),
+          ),
+          const SizedBox(
+            height: 3,
           ),
           Text(
             "Rs. ${product!.price.toString()}",
             style: const TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w400,
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87
             ),
           ),
         ],

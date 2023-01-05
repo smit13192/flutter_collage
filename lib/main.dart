@@ -4,6 +4,7 @@ import 'package:ms/model/constanat.dart';
 import 'package:ms/views/pages/home_page.dart';
 import 'package:ms/views/pages/login_support_page.dart';
 import 'package:ms/views/pages/main_page.dart';
+import 'package:ms/views/pages/product_description_page.dart';
 import 'package:ms/views/pages/splash_page.dart';
 // ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
@@ -37,6 +38,11 @@ class MyApp extends StatelessWidget {
                 builder: (context) => const LoginSupportPage());
           case mainPage:
             return MaterialPageRoute(builder: (context) => const MainPage());
+          case productDescription:
+            String id = settings.arguments as String;
+            return MaterialPageRoute(
+                builder: (context) => ProductDescription(id: id));
+
           default:
             return MaterialPageRoute(builder: (context) => const SpalshPage());
         }
