@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ms/model/constanat.dart';
+import 'package:ms/model/constant.dart';
 import 'package:ms/views/pages/home_page.dart';
 import 'package:ms/views/pages/login_support_page.dart';
 import 'package:ms/views/pages/main_page.dart';

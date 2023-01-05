@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:ms/model/product.dart';
 
-import '../../model/constanat.dart';
+import '../../model/constant.dart';
 
 class ProductDescription extends StatelessWidget {
   final String id;

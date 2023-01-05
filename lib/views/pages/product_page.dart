@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:ms/model/product.dart';
 import 'package:ms/views/widgets/product_tile.dart';
-import '../../model/constanat.dart';
+import '../../model/constant.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key});

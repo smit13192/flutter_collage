@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:ms/model/constanat.dart';
+import 'package:ms/model/constant.dart';
 
 class SpalshPage extends StatefulWidget {
   const SpalshPage({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ms/model/constanat.dart';
+import 'package:ms/model/constant.dart';
 import 'package:ms/views/pages/product_page.dart';
 
 import '../widgets/bottom_navigation_bar.dart';

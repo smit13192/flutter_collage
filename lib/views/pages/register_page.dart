@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ms/views/widgets/snackbar_widget.dart';
-import '../../model/constanat.dart';
+import '../../model/constant.dart';
 import '../widgets/textfeild_border.dart';
 
 class RegisterPage extends StatefulWidget {

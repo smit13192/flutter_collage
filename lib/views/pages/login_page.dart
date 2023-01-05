@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ms/model/constanat.dart';
+import 'package:ms/model/constant.dart';
 import 'package:ms/views/widgets/snackbar_widget.dart';
 import 'package:ms/views/widgets/textfeild_border.dart';
 
