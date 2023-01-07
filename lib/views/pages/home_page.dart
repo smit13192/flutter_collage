@@ -19,6 +19,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black.withOpacity(0.7),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
