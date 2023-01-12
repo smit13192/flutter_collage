@@ -59,7 +59,8 @@ class ProductDescription extends StatelessWidget {
                               controller: pageController,
                               itemCount: snapshot.data!.image.length,
                               itemBuilder: (context, index) {
-                                return Image.network(snapshot.data!.image[index]);
+                                return Image.network(
+                                    snapshot.data!.image[index]);
                               },
                             ),
                           ),
@@ -92,16 +93,18 @@ class ProductDescription extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Text(
-                              "Fit: ${snapshot.data!.fit}",
-                              style: const TextStyle(
-                                fontSize: 15,
-                                color: Colors.black54,
-                              ),
-                            ),
-                          ),
+                          snapshot.data!.fit != null
+                              ? Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    "Fit: ${snapshot.data!.fit}",
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black54,
+                                    ),
+                                  ),
+                                )
+                              : Container(),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Text(
@@ -112,6 +115,7 @@ class ProductDescription extends StatelessWidget {
                               ),
                             ),
                           ),
+                          snapshot.data!.composition != null ?
                           Padding(
                             padding: const EdgeInsets.symmetric(
                               vertical: 10,
@@ -123,7 +127,7 @@ class ProductDescription extends StatelessWidget {
                                 color: Colors.black54,
                               ),
                             ),
-                          ),
+                          ) : Container()
                         ],
                       ),
                     ),

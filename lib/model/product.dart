@@ -1,9 +1,9 @@
 class Product {
   String? id;
   String company;
-  String composition;
+  String? composition;
   String description;
-  String fit;
+  String? fit;
   List<dynamic> image;
   int price;
   String title;
