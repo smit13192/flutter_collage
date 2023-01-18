@@ -8,8 +8,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: StreamBuilder<User?>(
+    return StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if(snapshot.hasData) {
@@ -18,7 +17,6 @@ class MainPage extends StatelessWidget {
             return const LoginSupportPage();
           }
         },
-      ),
     );
   }
 }
