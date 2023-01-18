@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ms/model/constant.dart';
+import 'package:ms/views/pages/cart_page.dart';
 import 'package:ms/views/pages/product_page.dart';
+import 'package:ms/views/pages/profile_page.dart';
+import 'package:ms/views/pages/search_page.dart';
 
 import '../widgets/bottom_navigation_bar.dart';
 
@@ -13,6 +16,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int bottomNavigationIndex = 0;
+
+  List<Widget> pages = [
+    const ProductPage(),
+    const SearchPage(),
+    const CartPage(),
+    const ProfilePage()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +44,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: const ProductPage(),
+      body: IndexedStack(
+        index: bottomNavigationIndex,
+        children: pages,
+      ),
       bottomNavigationBar: MyBottomNavigationBar(
         bottomNavigationIndex: bottomNavigationIndex,
         onTabChanged: (value) => setState(() => bottomNavigationIndex = value),

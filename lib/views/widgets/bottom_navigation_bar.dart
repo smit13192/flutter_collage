@@ -16,7 +16,6 @@ class MyBottomNavigationBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
       child: GNav(
-        duration: const Duration(seconds: 1),
         selectedIndex: bottomNavigationIndex,
         onTabChange: onTabChanged,
         tabBackgroundColor: Colors.grey.shade200,

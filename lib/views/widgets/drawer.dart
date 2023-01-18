@@ -57,7 +57,7 @@ class MyDrawer extends StatelessWidget {
             const ListTile(
               leading: Icon(Icons.favorite_border_outlined),
               title: Text(
-                "Favorite",
+                "Favourite",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 17,
