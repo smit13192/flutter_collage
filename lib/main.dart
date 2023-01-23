@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ms/controller/product_description_scroll.dart';
 import 'package:ms/model/constant.dart';
 import 'package:ms/views/pages/home_page.dart';
 import 'package:ms/views/pages/login_support_page.dart';
@@ -12,6 +14,7 @@ import 'package:firebase_core/firebase_core.dart';
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Get.put(ProductDescriptionScroll());
   runApp(const MyApp());
 }
 

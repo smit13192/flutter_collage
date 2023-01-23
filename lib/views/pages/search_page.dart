@@ -20,15 +20,18 @@ class _SearchPageState extends State<SearchPage> {
           TextField(
             controller: search,
             decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search),
-                contentPadding: const EdgeInsets.all(10),
-                hintText: "Search",
-                enabledBorder: enabledBorder,
-                focusedBorder: focusedBorder,
-                suffixIcon: IconButton(
-                    onPressed: () {
-                      search.text = "";
-                    }, icon: const Icon(Icons.clear))),
+              prefixIcon: const Icon(Icons.search),
+              contentPadding: const EdgeInsets.all(10),
+              hintText: "Search",
+              enabledBorder: enabledBorder,
+              focusedBorder: focusedBorder,
+              suffixIcon: IconButton(
+                onPressed: () {
+                  search.text = "";
+                },
+                icon: const Icon(Icons.clear),
+              ),
+            ),
           ),
         ],
       ),
