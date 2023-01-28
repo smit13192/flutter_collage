@@ -1,9 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ms/controller/product_description_scroll.dart';
 import 'package:ms/model/product.dart';
 
+import '../../controller/read_product.dart';
 import '../../model/constant.dart';
 
 class ProductDescription extends StatelessWidget {
@@ -13,15 +15,7 @@ class ProductDescription extends StatelessWidget {
   final ProductDescriptionScroll controller = Get.find();
   ProductDescription({required this.id, super.key});
 
-  Future<Product?> readProduct() async {
-    final doctproduct =
-        FirebaseFirestore.instance.collection("products").doc(id);
-    final snapshot = await doctproduct.get();
-    if (snapshot.exists) {
-      return Product.fromMap(snapshot.id, snapshot.data()!);
-    }
-    return null;
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +41,7 @@ class ProductDescription extends StatelessWidget {
           return true;
         },
         child: FutureBuilder<Product?>(
-          future: readProduct(),
+          future: readProduct(id),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return NotificationListener<OverscrollIndicatorNotification>(
@@ -182,17 +176,30 @@ class ProductDescription extends StatelessWidget {
                         child: Row(
                           children: [
                             Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.black87,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                height: 50,
-                                child: const Center(
+                              child: GestureDetector(
+                                onTap: () {
+                                  DatabaseReference ref = FirebaseDatabase
+                                      .instance
+                                      .ref('cart')
+                                      .child(FirebaseAuth
+                                          .instance.currentUser!.email!
+                                          .split('@')[0]);
+                                  String? key = ref.push().key;
+                                  ref.child(key!).set({'id': key, 'pid': id});
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.black87,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  height: 50,
+                                  child: const Center(
                                     child: Text(
-                                  "Add To Cart",
-                                  style: TextStyle(color: Colors.white),
-                                )),
+                                      "Add To Cart",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                             const SizedBox(

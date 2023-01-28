@@ -1,18 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:ms/model/product.dart';
 import 'package:ms/views/widgets/product_tile.dart';
+import '../../controller/read_product.dart';
 import '../../model/constant.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key});
-
-  Stream<List<Product>> readProducts() => FirebaseFirestore.instance
-      .collection("products")
-      .snapshots()
-      .map((snapshot) => snapshot.docs
-          .map((product) => Product.fromMap(product.id, product.data()))
-          .toList());
 
   @override
   Widget build(BuildContext context) {
