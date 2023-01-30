@@ -4,14 +4,13 @@ import 'package:ms/views/widgets/cart_tile.dart';
 
 import '../../model/cart.dart';
 
-// ignore: must_be_immutable
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Cart>>(
-      future: cartProduct(),
+    return StreamBuilder<List<Cart>>(
+      stream: readCartProducts(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Cart> cartproducts = snapshot.data!;
@@ -20,7 +19,7 @@ class CartPage extends StatelessWidget {
             itemBuilder: (context, index) {
               Cart product = cartproducts[index];
               return CartTile(
-                pid: product.pid,
+                cartproduct: product,
               );
             },
           );

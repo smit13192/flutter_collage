@@ -31,8 +31,16 @@ Future<List<Cart>> cartProduct() async {
   if (event.snapshot.value != null) {
     Map products = event.snapshot.value as Map;
     products.forEach((key, value) {
-      cartProduct.add(Cart.fromMap(value));
+      cartProduct.add(Cart.fromMap(value['id'], value));
     });
   }
   return cartProduct;
 }
+
+Stream<List<Cart>> readCartProducts() => FirebaseFirestore.instance
+    .collection('Users')
+    .doc(FirebaseAuth.instance.currentUser!.email!.split("@")[0])
+    .collection('cart')
+    .snapshots()
+    .map((event) =>
+        event.docs.map((cart) => Cart.fromMap(cart.id, cart.data())).toList());
