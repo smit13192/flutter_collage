@@ -29,7 +29,7 @@ class ProductPage extends StatelessWidget {
                       child: ProductTile(product: snapshot.data![index]));
                 },
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
+                  maxCrossAxisExtent: 300,
                   mainAxisSpacing: 5,
                   childAspectRatio: 0.6,
                 )),
