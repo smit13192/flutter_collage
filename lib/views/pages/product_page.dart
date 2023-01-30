@@ -18,21 +18,22 @@ class ProductPage extends StatelessWidget {
               return true;
             },
             child: GridView.builder(
-                addRepaintBoundaries: false,
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, productDescription,
-                            arguments: snapshot.data![index].id);
-                      },
-                      child: ProductTile(product: snapshot.data![index]));
-                },
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 300,
-                  mainAxisSpacing: 5,
-                  childAspectRatio: 0.6,
-                )),
+              addRepaintBoundaries: false,
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, productDescription,
+                          arguments: snapshot.data![index].id);
+                    },
+                    child: ProductTile(product: snapshot.data![index]));
+              },
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
+                mainAxisSpacing: 5,
+                childAspectRatio: 0.60,
+              ),
+            ),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(

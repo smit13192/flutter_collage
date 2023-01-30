@@ -18,7 +18,8 @@ class CartTile extends StatelessWidget {
         if (snapshot.hasData) {
           Product product = snapshot.data!;
           return Card(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            margin: const EdgeInsets.symmetric(vertical: 5),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: Row(

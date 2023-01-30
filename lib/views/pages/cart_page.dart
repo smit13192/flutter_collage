@@ -14,14 +14,66 @@ class CartPage extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Cart> cartproducts = snapshot.data!;
-          return ListView.builder(
-            itemCount: cartproducts.length,
-            itemBuilder: (context, index) {
-              Cart product = cartproducts[index];
-              return CartTile(
-                cartproduct: product,
-              );
-            },
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: cartproducts.length,
+                    itemBuilder: (context, index) {
+                      Cart product = cartproducts[index];
+                      return CartTile(
+                        cartproduct: product,
+                      );
+                    },
+                  ),
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          height: 50,
+                          child: const Center(
+                            child: Text(
+                              "Place Order",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          height: 50,
+                          child: const Center(
+                            child: Text(
+                              "Buy Now",
+                              style: TextStyle(color: Colors.black87),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           );
         } else {
           return const Center(
