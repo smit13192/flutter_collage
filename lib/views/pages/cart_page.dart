@@ -75,6 +75,8 @@ class CartPage extends StatelessWidget {
               ],
             ),
           );
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
         } else {
           return const Center(
             child: Text('Some error'),
