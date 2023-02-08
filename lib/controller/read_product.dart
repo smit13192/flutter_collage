@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:ms/model/user.dart';
 
 import '../model/cart.dart';
 import '../model/product.dart';
@@ -23,9 +23,8 @@ Stream<List<Product>> readProducts() => FirebaseFirestore.instance
 
 Future<List<Cart>> cartProduct() async {
   List<Cart> cartProduct = [];
-  DatabaseReference ref = FirebaseDatabase.instance
-      .ref('cart')
-      .child(FirebaseAuth.instance.currentUser!.email!.split('@')[0]);
+  DatabaseReference ref =
+      FirebaseDatabase.instance.ref('cart').child(AppUser.email.split('@')[0]);
 
   DatabaseEvent event = await ref.once();
   if (event.snapshot.value != null) {
@@ -37,10 +36,13 @@ Future<List<Cart>> cartProduct() async {
   return cartProduct;
 }
 
-Stream<List<Cart>> readCartProducts() => FirebaseFirestore.instance
-    .collection('Users')
-    .doc(FirebaseAuth.instance.currentUser!.email!.split("@")[0])
-    .collection('cart')
-    .snapshots()
-    .map((event) =>
-        event.docs.map((cart) => Cart.fromMap(cart.id, cart.data())).toList());
+Stream<List<Cart>> readCartProducts() {
+  return FirebaseFirestore.instance
+      .collection('Users')
+      .doc(AppUser.email.split("@")[0])
+      .collection('cart')
+      .snapshots()
+      .map((event) => event.docs
+          .map((cart) => Cart.fromMap(cart.id, cart.data()))
+          .toList());
+}

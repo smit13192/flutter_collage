@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ms/controller/product_description_scroll.dart';
 import 'package:ms/model/cart.dart';
 import 'package:ms/model/product.dart';
+import 'package:ms/model/user.dart';
 
 import '../../controller/read_product.dart';
 import '../../model/constant.dart';
@@ -177,39 +177,7 @@ class ProductDescription extends StatelessWidget {
                           children: [
                             Expanded(
                               child: GestureDetector(
-                                onTap: () async {
-                                  bool isin = false;
-                                  var products = await FirebaseFirestore
-                                      .instance
-                                      .collection('Users')
-                                      .doc(FirebaseAuth
-                                          .instance.currentUser!.email!
-                                          .split("@")[0])
-                                      .collection('cart')
-                                      .where('pid', isEqualTo: id)
-                                      .get()
-                                      .then((value) => value.docs
-                                          .map((e) =>
-                                              Cart.fromMap(e.id, e.data()))
-                                          .toList());
-                                  
-                                  for (var product in products) {
-                                    if (product.pid == id) {
-                                      isin = true;
-                                    }
-                                  }
-                                  if (!isin) {
-                                    await FirebaseFirestore.instance
-                                        .collection('Users')
-                                        .doc(FirebaseAuth
-                                            .instance.currentUser!.email!
-                                            .split("@")[0])
-                                        .collection('cart')
-                                        .doc()
-                                        .set({'pid': id});
-                                    Fluttertoast.showToast(msg: "Add Cart");
-                                  }
-                                },
+                                onTap: onTap,
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: Colors.black87,
@@ -258,5 +226,32 @@ class ProductDescription extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  onTap() async {
+    bool isin = false;
+    var products = await FirebaseFirestore.instance
+        .collection('Users')
+        .doc(AppUser.email.split("@")[0])
+        .collection('cart')
+        .where('pid', isEqualTo: id)
+        .get()
+        .then((value) =>
+            value.docs.map((e) => Cart.fromMap(e.id, e.data())).toList());
+
+    for (var product in products) {
+      if (product.pid == id) {
+        isin = true;
+      }
+    }
+    if (!isin) {
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(AppUser.email.split("@")[0])
+          .collection('cart')
+          .doc()
+          .set({'pid': id});
+      Fluttertoast.showToast(msg: "Add Cart");
+    }
   }
 }

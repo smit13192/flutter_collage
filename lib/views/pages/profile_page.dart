@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ms/model/user.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -40,7 +41,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    FirebaseAuth.instance.currentUser!.email!,
+                    AppUser.email,
                     style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 17,
