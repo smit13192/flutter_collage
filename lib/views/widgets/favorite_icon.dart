@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:ms/model/user.dart';
+import 'package:ms/model/constant.dart';
 
 class FavoriteIcon extends StatefulWidget {
   final String id;
@@ -42,7 +43,15 @@ class _FavoriteIconState extends State<FavoriteIcon> {
   }
 
   checkIsFavorite() async {
-    List list = await AppUser.favorite;
+    List list = [];
+    var snapshot = await FirebaseFirestore.instance
+        .collection(usersCollectionName)
+        .doc(FirebaseAuth.instance.currentUser!.email!.split("@")[0])
+        .collection(usersFavouriteCollectionName)
+        .get();
+    for (var fav in snapshot.docs) {
+      list.add(fav.data()["fid"]);
+    }
     isfavorite = list.contains(widget.id);
     setState(() {});
   }
@@ -50,28 +59,27 @@ class _FavoriteIconState extends State<FavoriteIcon> {
   onPressed() async {
     if (isfavorite) {
       var snapshot = await FirebaseFirestore.instance
-          .collection('Users')
-          .doc(AppUser.email.split("@")[0])
-          .collection('favorite')
+          .collection(usersCollectionName)
+          .doc(FirebaseAuth.instance.currentUser!.email!.split("@")[0])
+          .collection(usersFavouriteCollectionName)
           .where("fid", isEqualTo: widget.id)
           .get();
       await FirebaseFirestore.instance
-          .collection('Users')
-          .doc(AppUser.email.split("@")[0])
-          .collection('favorite')
+          .collection(usersCollectionName)
+          .doc(FirebaseAuth.instance.currentUser!.email!.split("@")[0])
+          .collection(usersFavouriteCollectionName)
           .doc(snapshot.docs[0].id)
           .delete();
       Fluttertoast.showToast(msg: "Remove Favorite");
     } else {
       await FirebaseFirestore.instance
-          .collection('Users')
-          .doc(AppUser.email.split("@")[0])
-          .collection('favorite')
+          .collection(usersCollectionName)
+          .doc(FirebaseAuth.instance.currentUser!.email!.split("@")[0])
+          .collection(usersFavouriteCollectionName)
           .doc()
           .set({"fid": widget.id});
       Fluttertoast.showToast(msg: "Add Favorite");
     }
-    isfavorite = !isfavorite;
     checkIsFavorite();
   }
 }

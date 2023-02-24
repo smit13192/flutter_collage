@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ms/model/product.dart';
 
-import 'favorite.dart';
+import 'favorite_icon.dart';
 
 class ProductTile extends StatelessWidget {
   final Product product;

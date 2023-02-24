@@ -1,3 +1,4 @@
+// id is the unique
 class Product {
   String? id;
   String company;

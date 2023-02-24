@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ms/model/user.dart';
+
+import '../../model/constant.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -41,7 +42,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    AppUser.email,
+                    FirebaseAuth.instance.currentUser!.email!,
                     style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 17,
@@ -66,9 +67,10 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
         ),
-        const ListTile(
-          leading: Icon(Icons.favorite_border_outlined),
-          title: Text(
+        ListTile(
+          onTap: () => Navigator.pushNamed(context, favouritePage),
+          leading: const Icon(Icons.favorite_border_outlined),
+          title:const Text(
             "Favourite",
             style: TextStyle(
               fontWeight: FontWeight.w500,

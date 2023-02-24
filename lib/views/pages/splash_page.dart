@@ -40,29 +40,30 @@ class _SpalshPageState extends State<SpalshPage>
         child: SizedBox(
           width: double.infinity,
           child: AnimatedBuilder(
-              animation: animationTitle,
-              builder: (context, child) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      appName,
-                      style: TextStyle(
-                          color: Colors.white,
-                          letterSpacing: 2,
-                          fontSize: animationTitle.value,
-                          fontWeight: FontWeight.w200),
-                    ),
-                    Text(
-                      appThemeTitle,
-                      style: TextStyle(
-                          color: Colors.white,
-                          letterSpacing: 2,
-                          fontSize: animationSubtitle.value),
-                    )
-                  ],
-                );
-              }),
+            animation: animationTitle,
+            builder: (context, child) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    appName,
+                    style: TextStyle(
+                        color: Colors.white,
+                        letterSpacing: 2,
+                        fontSize: animationTitle.value,
+                        fontWeight: FontWeight.w200),
+                  ),
+                  Text(
+                    appThemeTitle,
+                    style: TextStyle(
+                        color: Colors.white,
+                        letterSpacing: 2,
+                        fontSize: animationSubtitle.value),
+                  )
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

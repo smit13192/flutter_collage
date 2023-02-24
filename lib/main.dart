@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ms/controller/product_description_scroll.dart';
 import 'package:ms/model/constant.dart';
+import 'package:ms/views/pages/favorite_page.dart';
 import 'package:ms/views/pages/home_page.dart';
 import 'package:ms/views/pages/login_support_page.dart';
 import 'package:ms/views/pages/main_page.dart';
@@ -46,7 +47,9 @@ class MyApp extends StatelessWidget {
             String id = settings.arguments as String;
             return MaterialPageRoute(
                 builder: (context) => ProductDescription(id: id));
-
+          case favouritePage:
+            return MaterialPageRoute(
+                builder: (context) => const FavoritePage());
           default:
             return MaterialPageRoute(builder: (context) => const SpalshPage());
         }

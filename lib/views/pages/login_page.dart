@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
-    } catch (e) {
+    } catch (e ) {
       showSnackBar(context, "Email is not exist or password is wrong");
     }
   }
